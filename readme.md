@@ -1,4 +1,4 @@
-# xgo ![Build](https://github.com/sudo-suhas/xgo/workflows/Check/badge.svg) [![go.dev reference](https://img.shields.io/badge/go.dev-reference-007d9c?logo=go&logoColor=white&style=flat-square)](https://pkg.go.dev/mod/github.com/sudo-suhas/xgo?tab=packages)
+# xgo ![build](https://github.com/sudo-suhas/xgo/workflows/build/badge.svg) [![go.dev reference](https://img.shields.io/badge/go.dev-reference-007d9c?logo=go&logoColor=white&style=flat-square)](https://pkg.go.dev/mod/github.com/sudo-suhas/xgo?tab=packages)
 
 > Collection of packages to serve as the building blocks for developing Go
 > applications.
