@@ -45,7 +45,7 @@ func TestOption(t *testing.T) {
 }
 
 func TestWithToJSON(t *testing.T) {
-	e := E(WithToJSON(nilJSON)).(*Error)
+	e := E(WithToJSON(nilJSON)).(*Error) //nolint:errcheck
 	if e.ToJSON == nil {
 		t.Errorf("Error.ToJSON=nil; want %s", funcName(nilJSON))
 		return
