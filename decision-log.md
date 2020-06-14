@@ -56,7 +56,7 @@ and clarity is not too bad (I hope).
 const op xgo.Op = "service.MakeBooking"
 //...
 if err := db.OpenConn(ctx); err != nil {
-    return nil, errors.E(errors.WithOp(op), errors.IO, errors.WithText("open connection"), errors.WithErr(err))
+	return nil, errors.E(errors.WithOp(op), errors.IO, errors.WithText("open connection"), errors.WithErr(err))
 }
 ```
 
@@ -66,13 +66,13 @@ the error instance.
 
 ```go
 func withSQLError(err error) errors.Option {
-    return errors.OptionFunc(func(e *errors.Error) {
-        if err == sql.ErrNoRows {
-            err.Kind = errors.NotFound
-        }
+	return errors.OptionFunc(func(e *errors.Error) {
+		if err == sql.ErrNoRows {
+			err.Kind = errors.NotFound
+		}
 
-        e.Err = err
-    })
+		e.Err = err
+	})
 }
 ```
 
@@ -135,7 +135,7 @@ used as though it is just a constant.
 
 ```go
 if errors.WhatKind(err) == errors.NotFound {
-    // ...
+	// ...
 }
 ```
 
