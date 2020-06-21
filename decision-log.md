@@ -155,14 +155,14 @@ used. The `error` is free to return the most appropriate `JSON` representation
 and leave it up to the caller on how to use it.
 
 Here's some example code which uses reflection to identify the underlying type
-and combine the JSON representation of multiple errors:
+and combines the JSON representation of multiple errors:
 
 ```go
 func errsToJSON(errs ...error) []interface{} {
 	var jj []interface{}
 	for _, err := range errs {
-		ej, ok := err.(xgo.JSONer)
-		if !ok {
+		var ej xgo.JSONer
+		if !errors.As(err, &ej) {
 			continue
 		}
 

@@ -12,7 +12,7 @@ import "reflect"
 // argument but not present in the first are ignored.
 //
 // For example,
-//	Match(errors.E(errors.WithOp("service.MakeBooking"), errors.PermissionDenied), err)
+//	errors.Match(errors.E(errors.WithOp("service.MakeBooking"), errors.PermissionDenied), err)
 // tests whether err is an Error with Kind=PermissionDenied and
 // Op=service.MakeBooking.
 func Match(err1, err2 error) bool {

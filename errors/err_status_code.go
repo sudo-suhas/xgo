@@ -32,10 +32,10 @@ func StatusCode(err error) int {
 // StatusCode attempts to determine the HTTP status code which is
 // suitable for the error Kind.
 func (e *Error) StatusCode() int {
-	if e.Kind != Unknown {
-		return e.Kind.Status
+	if e.Kind == Unknown {
+		// Return 0 because when the error kind is not present(Unknown), try and
+		// delegate to the errors down the chain.
+		return 0
 	}
-	// Return 0 because when the error kind is not present(Unknown), try and
-	// delegate to the errors down the chain.
-	return 0
+	return e.Kind.Status
 }

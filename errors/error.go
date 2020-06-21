@@ -74,7 +74,7 @@ func E(opt Option, opts ...Option) error {
 // 	package service
 // 	...
 // 	if err := svc.SaveOrder(o); err != nil {
-// 		return domain.E(op, err)
+// 		return domain.E(errors.WithOp(op), errors.WithErr(err))
 // 	}
 //
 func EWithDefaults(defOpt Option, defOpts ...Option) func(...Option) error {

@@ -104,19 +104,19 @@ func WithToJSON(f JSONFunc) Option {
 //
 // The response body is set as the Data. Special handling is included
 // for detecting and preserving JSON response.
-func WithResp(res *http.Response) Option {
+func WithResp(resp *http.Response) Option {
 	return OptionFunc(func(e *Error) {
-		e.Kind = KindFromStatus(res.StatusCode)
+		e.Kind = KindFromStatus(resp.StatusCode)
 
-		req := res.Request
-		e.Text = fmt.Sprintf("[%s] %s: %s", req.Method, req.URL.RequestURI(), res.Status)
+		req := resp.Request
+		e.Text = fmt.Sprintf("[%s] %s: %s", req.Method, req.URL.RequestURI(), resp.Status)
 
-		body, err := ioutil.ReadAll(res.Body)
+		body, err := ioutil.ReadAll(resp.Body)
 		if err != nil {
 			return
 		}
 
-		if isJSONContent(res.Header.Get("Content-Type")) && isValidJSON(body) {
+		if isJSONContent(resp.Header.Get("Content-Type")) && isValidJSON(body) {
 			e.Data = (json.RawMessage)(body)
 		} else {
 			e.Data = (string)(body)
