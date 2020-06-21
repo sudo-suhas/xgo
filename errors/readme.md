@@ -10,7 +10,7 @@ HTTP interop.
   - [Adding context to an error](#adding-context-to-an-error)
   - [Inspecting errors](#inspecting-errors)
   - [Errors for the end user](#errors-for-the-end-user)
-  - [HTTP interop](#http-unterop)
+  - [HTTP interop](#http-interop)
     - [Status code](#status-code)
     - [Response body](#response-body)
   - [Logging errors](#logging-errors)
@@ -76,7 +76,7 @@ if err := svc.SaveOrder(o); err != nil {
 ### Inspecting errors
 
 The error [`Kind`][errors.kind] can be extracted using the function
-[`errors.WhatKind`][errors.whatkind]:
+[`errors.WhatKind(error)`][errors.whatkind]:
 
 ```go
 if errors.WhatKind(err) == errors.NotFound {
@@ -218,7 +218,8 @@ func KindFromStatus(status int) Kind
 
 _The utility function [`errors.WithResp(*http.Response)`][errors.withresp],
 which uses [`KindFromStatus`][errors.kindfromstatus], makes it possible to
-construct an error from `*http.Response` with contextual information._
+construct an error from `*http.Response` with contextual information of the
+request and response._
 
 #### Response body
 
@@ -301,7 +302,7 @@ ideal for parsing by machines and is therefore less friendly to structural
 search.
 
 [`*Error.Details()`][error.details] constructs and yields the details of the
-error by traversing the error chain in a [structure][errors.internaldetails]
+error, by traversing the error chain, in a [structure][errors.internaldetails]
 which is suitable to be parsed.
 
 ```go

@@ -13,7 +13,7 @@ $ go get github.com/sudo-suhas/xgo
 
 Usage for each package is documentated in the respective readme.
 
-- [`errors`](errors) ([API reference][errors-api-docs])
+- [`errors`](errors#table-of-contents) ([API reference][errors-api-docs])
 
 ## Decision Log
 
