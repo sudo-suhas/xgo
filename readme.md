@@ -11,12 +11,14 @@ $ go get github.com/sudo-suhas/xgo
 
 ## Usage
 
-TODO
+Usage for each package is documentated in the respective readme.
+
+- [`errors`](errors) ([API reference][errors-api-docs])
 
 ## Decision Log
 
 The rationale for important design decisions is documented in
-[decision-log.md](/decision-log.md).
+[decision-log.md](decision-log.md).
 
 ## Credit
 
@@ -28,6 +30,7 @@ A lot of the ideas for the errors package are from these articles and talks:
 - ["Handling Go errors"][handling-go-errors] by Marwan Sulaiman from
   GopherCon 2019.
 
+[errors-api-docs]: https://pkg.go.dev/github.com/sudo-suhas/xgo/errors
 [err-handling-upspin]:
 	https://commandcenter.blogspot.com/2017/12/error-handling-in-upspin.html
 [failure-your-domain]: https://middlemost.com/failure-is-your-domain/
