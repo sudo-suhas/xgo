@@ -130,7 +130,7 @@ if errors.As(err, &terr) && terr.Timeout() {
 ### Errors for the end user
 
 Errors have multiple consumers, the end user being one of them. However, to the
-end user, the error test, root cause etc. are not relevant (and in most cases,
+end user, the error text, root cause etc. are not relevant (and in most cases,
 **should not** be exposed as it could be a security concern).
 
 To address this, [`Error`][errors.error] has the field `UserMsg` which is
@@ -166,10 +166,13 @@ func (s *Service) CreateUser(ctx context.Context, user *myapp.User) error {
 }
 
 // Elsewhere in the application, for responding with the error to the user
-if msg := errors.UserMsg(err); err != "" {
+if msg := errors.UserMsg(err); msg != "" {
 	// ...
 }
 ```
+
+Translating the error to a meaningful HTTP response is convered in the section
+[HTTP interop - Response body](#response-body).
 
 ### HTTP interop
 
@@ -179,7 +182,7 @@ if msg := errors.UserMsg(err); err != "" {
 #### Status code
 
 `errors` is intended to be a general purpose error handling package. However, it
-includes minor extentions to make working with HTTP easier. The idea is that its
+includes minor extensions to make working with HTTP easier. The idea is that its
 there if you need it but doesn't get in the way if you don't.
 
 [`errors.Kind`][errors.kind] is composed of the error code and the HTTP status
@@ -298,7 +301,7 @@ stack trace_ (to help understand the program flow), error code, error text and
 any other contextual information associated with the error.
 
 The error string by default includes most of the information but would not be
-ideal for parsing by machines and is therefore less friendly to structural
+ideal for parsing by machines and is therefore less friendly to structured
 search.
 
 [`*Error.Details()`][error.details] constructs and yields the details of the
