@@ -63,26 +63,6 @@ func E(opt Option, opts ...Option) error {
 	return &e
 }
 
-// EWithDefaults returns an error constructor with default options
-// setup. This is useful when we want to include a specific contructor
-// option for all errors in the application domain.
-//
-// 	package domain
-// 	...
-// 	var E = errors.EWithDefaults(errors.WithToJSON(errToJSON))
-//
-// 	package service
-// 	...
-// 	if err := svc.SaveOrder(o); err != nil {
-// 		return domain.E(errors.WithOp(op), errors.WithErr(err))
-// 	}
-//
-func EWithDefaults(defOpt Option, defOpts ...Option) func(...Option) error {
-	return func(opts ...Option) error {
-		return E(defOpt, append(defOpts, opts...)...)
-	}
-}
-
 func (e *Error) Error() string {
 	b := new(bytes.Buffer)
 

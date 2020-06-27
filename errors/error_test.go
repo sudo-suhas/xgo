@@ -163,29 +163,6 @@ func TestDoesNotChangePreviousError(t *testing.T) {
 	}
 }
 
-func TestEWithDefaults(t *testing.T) {
-	customE := EWithDefaults(WithUserMsg("Deal with it!"), Internal)
-	cases := []struct{ got, want error }{
-		{
-			customE(),
-			E(Internal, WithUserMsg("Deal with it!")),
-		},
-		{
-			customE(WithOp("Get"), WithText("beat dead horse: already dead")),
-			E(WithOp("Get"), WithText("beat dead horse: already dead"), Internal, WithUserMsg("Deal with it!")),
-		},
-		{
-			customE(WithOp("Get"), NotFound, WithText("beat dead horse: already dead")),
-			E(WithOp("Get"), WithText("beat dead horse: already dead"), NotFound, WithUserMsg("Deal with it!")),
-		},
-	}
-	for _, tc := range cases {
-		if !Match(tc.want, tc.got) {
-			t.Errorf("\ngot %#v \nwant %#v", tc.got, tc.want)
-		}
-	}
-}
-
 func TestError(t *testing.T) {
 	cases := []struct {
 		err  error
