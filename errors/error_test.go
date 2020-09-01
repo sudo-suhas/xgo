@@ -156,10 +156,10 @@ func TestDoesNotChangePreviousError(t *testing.T) {
 
 	expected := "I will NOT modify err: permission denied"
 	if err2.Error() != expected {
-		t.Fatalf("Expected %q, got %q", expected, err2)
+		t.Errorf("Expected %q, got %q", expected, err2)
 	}
 	if kind := err.(*Error).Kind; kind != PermissionDenied {
-		t.Fatalf("Expected kind %v, got %v", PermissionDenied, kind)
+		t.Errorf("Expected kind %v, got %v", PermissionDenied, kind)
 	}
 }
 

@@ -11,4 +11,7 @@
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 
+# File that stores custom attributes of a folder on macOS.
+.DS_Store
+
 .playground

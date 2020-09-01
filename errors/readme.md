@@ -1,4 +1,4 @@
-# errors [![go.dev reference](https://img.shields.io/badge/go.dev-reference-007d9c?logo=go&logoColor=white&style=flat-square)](https://pkg.go.dev/github.com/sudo-suhas/xgo/errors)
+# errors [![PkgGoDev](https://pkg.go.dev/badge/github.com/sudo-suhas/xgo)](https://pkg.go.dev/github.com/sudo-suhas/xgo/errors)
 
 General purpose error handling package with few extra bells and whistles for
 HTTP interop.

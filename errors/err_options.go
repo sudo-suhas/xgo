@@ -116,7 +116,7 @@ func WithResp(resp *http.Response) Option {
 			return
 		}
 
-		if isJSONContent(resp.Header.Get("Content-Type")) && isValidJSON(body) {
+		if isJSONContent(resp.Header.Get("Content-Type")) && json.Valid(body) {
 			e.Data = (json.RawMessage)(body)
 		} else {
 			e.Data = (string)(body)
@@ -128,4 +128,3 @@ func WithResp(resp *http.Response) Option {
 var jsonCheck = regexp.MustCompile(`(?i:(application|text)/(json|.*\+json|json\-.*)(;|$))`)
 
 func isJSONContent(ct string) bool { return jsonCheck.MatchString(ct) }
-func isValidJSON(data []byte) bool { return json.Unmarshal(data, &json.RawMessage{}) == nil }

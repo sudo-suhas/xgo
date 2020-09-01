@@ -1,5 +1,5 @@
-// General purpose error handling package with few extra bells and
-// whistles for HTTP interop.
+// Package errors is a general purpose error handling package, with few
+// extra bells and whistles for HTTP interop.
 //
 // Creating errors
 //

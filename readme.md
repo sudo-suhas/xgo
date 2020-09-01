@@ -1,4 +1,4 @@
-# xgo ![build](https://github.com/sudo-suhas/xgo/workflows/build/badge.svg) [![go.dev reference](https://img.shields.io/badge/go.dev-reference-007d9c?logo=go&logoColor=white&style=flat-square)](https://pkg.go.dev/mod/github.com/sudo-suhas/xgo?tab=packages)
+# xgo ![build](https://github.com/sudo-suhas/xgo/workflows/build/badge.svg) [![PkgGoDev](https://pkg.go.dev/badge/github.com/sudo-suhas/xgo)](https://pkg.go.dev/mod/github.com/sudo-suhas/xgo?tab=packages)
 
 > Collection of packages to serve as the building blocks for developing Go
 > applications.
@@ -14,6 +14,7 @@ $ go get github.com/sudo-suhas/xgo
 Usage for each package is documentated in the respective readme.
 
 - [`errors`](errors#table-of-contents) ([API reference][errors-api-docs])
+- [`httputil`](httputil) ([API reference][httputil-api-docs])
 
 ## Decision Log
 
@@ -31,6 +32,7 @@ A lot of the ideas for the errors package are from these articles and talks:
   GopherCon 2019.
 
 [errors-api-docs]: https://pkg.go.dev/github.com/sudo-suhas/xgo/errors
+[httputil-api-docs]: https://pkg.go.dev/github.com/sudo-suhas/xgo/httputil
 [err-handling-upspin]:
 	https://commandcenter.blogspot.com/2017/12/error-handling-in-upspin.html
 [failure-your-domain]: https://middlemost.com/failure-is-your-domain/
