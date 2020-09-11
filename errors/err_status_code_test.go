@@ -27,7 +27,7 @@ func TestStatusCode(t *testing.T) {
 		{"KindCanceled", E(Canceled), http.StatusInternalServerError},
 		{"KindUnimplemented", E(Unimplemented), http.StatusNotImplemented},
 		{"KindUnavailable", E(Unavailable), http.StatusServiceUnavailable},
-		{"KindDeadlineExceeded", E(DeadlineExceeded), http.StatusRequestTimeout},
+		{"KindDeadlineExceeded", E(DeadlineExceeded), http.StatusServiceUnavailable},
 		{"CustomErr", MyError{}, http.StatusForbidden},
 		{"Nested", E(WithErr(E(InvalidInput))), http.StatusBadRequest},
 		{"NestedInAlien", fmt.Errorf("nested: %w", E(InvalidInput)), http.StatusBadRequest},
