@@ -56,7 +56,8 @@ and clarity is not too bad (I hope).
 const op xgo.Op = "service.MakeBooking"
 //...
 if err := db.OpenConn(ctx); err != nil {
-	return nil, errors.E(errors.WithOp(op), errors.IO, errors.WithText("open connection"), errors.WithErr(err))
+	txt := "open connection"
+	return nil, errors.E(errors.WithOp(op), errors.Unavailable, errors.WithText(txt), errors.WithErr(err))
 }
 ```
 

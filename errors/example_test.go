@@ -91,7 +91,7 @@ func ExampleMatch() {
 	got := errors.E(
 		errors.WithOp("Get"),
 		errors.WithUserMsg(msg),
-		errors.IO,
+		errors.Unavailable,
 		errors.WithErr(err),
 	)
 
@@ -99,7 +99,7 @@ func ExampleMatch() {
 	// the fields of the error from the test.
 	expect := errors.E(
 		errors.WithOp("Get"),
-		errors.IO,
+		errors.Unavailable,
 		errors.WithErr(err),
 	)
 
