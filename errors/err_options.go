@@ -93,6 +93,35 @@ func WithToJSON(f JSONFunc) Option {
 	})
 }
 
+// Fields sets the fields specified on the Error instance. All fields
+// are optional but at least 1 must be specified. Zero values are
+// ignored.
+type Fields Error
+
+func (f Fields) Apply(e *Error) {
+	if f.Op != "" {
+		e.Op = f.Op
+	}
+	if f.Kind != Unknown {
+		e.Kind = f.Kind
+	}
+	if f.Text != "" {
+		e.Text = f.Text
+	}
+	if f.UserMsg != "" {
+		e.UserMsg = f.UserMsg
+	}
+	if f.Data != nil {
+		e.Data = f.Data
+	}
+	if f.Err != nil {
+		e.Err = f.Err
+	}
+	if f.ToJSON != nil {
+		e.ToJSON = f.ToJSON
+	}
+}
+
 // WithResp sets the Text, Kind, Data on the Error instance.
 //
 // HTTP method combined with the request path and the response status is
