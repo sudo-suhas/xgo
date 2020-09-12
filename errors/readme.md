@@ -1,4 +1,4 @@
-# errors [![PkgGoDev](https://pkg.go.dev/badge/github.com/sudo-suhas/xgo)](https://pkg.go.dev/github.com/sudo-suhas/xgo/errors)
+# errors [![PkgGoDev][pkg-go-dev-xgo-badge]][pkg-go-dev-xgo-errors]
 
 General purpose error handling package with few extra bells and whistles for
 HTTP interop.
@@ -342,6 +342,8 @@ find to be important in describing the program flow._
   > system can be more concise, more descriptive, and more helpful than a simple
   > stack trace.
 
+[pkg-go-dev-xgo-badge]: https://pkg.go.dev/badge/github.com/sudo-suhas/xgo
+[pkg-go-dev-xgo-errors]: https://pkg.go.dev/github.com/sudo-suhas/xgo/errors
 [errors.e]: https://pkg.go.dev/github.com/sudo-suhas/xgo/errors?tab=doc#E
 [errors.error]:
 	https://pkg.go.dev/github.com/sudo-suhas/xgo/errors?tab=doc#Error

@@ -34,6 +34,16 @@ func TestOption(t *testing.T) {
 		{"Err", WithErr(E(WithOp("Get"))), &Error{Op: "Get"}},
 		{"ErrNonError", WithErr(errors.New("invalid input")), &Error{Err: errors.New("invalid input")}},
 		{"Data", WithData(420), &Error{Data: 420}},
+		{
+			"Fields",
+			Fields{Op: "Get", Kind: InvalidInput, Text: "stoinks", UserMsg: "Deal with it!", Data: 420, Err: E(WithOp("root"))},
+			&Error{Op: "Get", Kind: InvalidInput, Text: "stoinks", UserMsg: "Deal with it!", Data: 420, Err: &Error{Op: "root"}},
+		},
+		{
+			"FieldsZero", // Only no-zero value fields are used.
+			Options(WithOp("Get"), InvalidInput, WithText("stoinks"), WithUserMsg("Deal with it!"), WithData(420), WithErr(E(WithOp("root"))), Fields{}),
+			&Error{Op: "Get", Kind: InvalidInput, Text: "stoinks", UserMsg: "Deal with it!", Data: 420, Err: &Error{Op: "root"}},
+		},
 	}
 	for _, tc := range cases {
 		t.Run("With"+tc.name, func(t *testing.T) {

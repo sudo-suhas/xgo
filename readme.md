@@ -1,4 +1,4 @@
-# xgo ![build](https://github.com/sudo-suhas/xgo/workflows/build/badge.svg) [![PkgGoDev](https://pkg.go.dev/badge/github.com/sudo-suhas/xgo)](https://pkg.go.dev/mod/github.com/sudo-suhas/xgo?tab=packages)
+# xgo [![build][github-workflow-badge]][github-workflow] [![PkgGoDev][pkg-go-dev-xgo-badge]][pkg-go-dev-xgo]
 
 > Collection of packages to serve as the building blocks for developing Go
 > applications.
@@ -31,6 +31,12 @@ A lot of the ideas for the errors package are from these articles and talks:
 - ["Handling Go errors"][handling-go-errors] by Marwan Sulaiman from
   GopherCon 2019.
 
+[github-workflow-badge]:
+	https://github.com/sudo-suhas/xgo/workflows/build/badge.svg
+[github-workflow]:
+	https://github.com/sudo-suhas/xgo/actions?query=workflow%3Abuild
+[pkg-go-dev-xgo-badge]: https://pkg.go.dev/badge/github.com/sudo-suhas/xgo
+[pkg-go-dev-xgo]: https://pkg.go.dev/mod/github.com/sudo-suhas/xgo?tab=packages
 [errors-api-docs]: https://pkg.go.dev/github.com/sudo-suhas/xgo/errors
 [httputil-api-docs]: https://pkg.go.dev/github.com/sudo-suhas/xgo/httputil
 [err-handling-upspin]:
