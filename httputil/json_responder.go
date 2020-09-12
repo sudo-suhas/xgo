@@ -60,9 +60,9 @@ func (jr *JSONResponder) Error(r *http.Request, w http.ResponseWriter, err error
 	jr.ErrorWithStatus(r, w, errors.StatusCode(err), err)
 }
 
-// Error writes the error response. The response body is constructed
-// from the error. ErrToResponseBody can be used to define/override the
-// response body structure.
+// ErrorWithStatus writes the error response. The response body is
+// constructed from the error. ErrToResponseBody can be used to
+// define/override the response body structure.
 func (jr *JSONResponder) ErrorWithStatus(r *http.Request, w http.ResponseWriter, status int, err error) {
 	jr.observeError(r, err)
 

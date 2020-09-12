@@ -14,7 +14,7 @@ type Kind struct {
 	Status int
 }
 
-// Apply implements Option interface. This allows Kind to be passes as a
+// Apply implements Option interface. This allows Kind to be passed as a
 // constructor option.
 func (k Kind) Apply(e *Error) {
 	e.Kind = k

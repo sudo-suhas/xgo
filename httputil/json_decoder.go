@@ -13,6 +13,7 @@ import (
 	"github.com/sudo-suhas/xgo/errors"
 )
 
+// Error kinds.
 var (
 	ErrKindUnsupportedMediaType = errors.Kind{
 		Code:   "UNSUPPORTED_MEDIA_TYPE",
@@ -42,6 +43,7 @@ type JSONDecoder struct {
 	DisallowUnknownFields bool
 }
 
+// Decode decodes the HTTP request into the given value.
 func (j JSONDecoder) Decode(r *http.Request, v interface{}) error {
 	var op xgo.Op = "JSONDecoder.Decode"
 

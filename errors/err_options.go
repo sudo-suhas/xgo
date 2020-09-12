@@ -10,7 +10,7 @@ import (
 	"github.com/sudo-suhas/xgo"
 )
 
-// OptionFunc is a type of constructor option for E(...)
+// Option is a type of constructor option for E(...)
 type Option interface {
 	Apply(*Error)
 }
@@ -98,6 +98,8 @@ func WithToJSON(f JSONFunc) Option {
 // ignored.
 type Fields Error
 
+// Apply implements Option interface. This allows Fields to be passed as a
+// constructor option.
 func (f Fields) Apply(e *Error) {
 	if f.Op != "" {
 		e.Op = f.Op
