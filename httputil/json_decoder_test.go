@@ -1,4 +1,4 @@
-package httputil
+package httputil_test
 
 import (
 	"encoding/json"
@@ -9,6 +9,7 @@ import (
 	"testing"
 
 	"github.com/sudo-suhas/xgo/errors"
+	"github.com/sudo-suhas/xgo/httputil"
 )
 
 func TestJSONDecoderDecode(t *testing.T) {
@@ -18,7 +19,7 @@ func TestJSONDecoderDecode(t *testing.T) {
 	)
 	cases := []struct {
 		name    string
-		j       JSONDecoder
+		j       httputil.JSONDecoder
 		r       request
 		v       interface{}
 		want    interface{}
@@ -37,7 +38,7 @@ func TestJSONDecoderDecode(t *testing.T) {
 		},
 		{
 			name: "SuccessWithSkipCheckContentType",
-			j:    JSONDecoder{SkipCheckContentType: true},
+			j:    httputil.JSONDecoder{SkipCheckContentType: true},
 			r: request{
 				method: method,
 				url:    url,
@@ -48,7 +49,7 @@ func TestJSONDecoderDecode(t *testing.T) {
 		},
 		{
 			name: "SuccessWithUseNumber",
-			j:    JSONDecoder{UseNumber: true},
+			j:    httputil.JSONDecoder{UseNumber: true},
 			r: request{
 				method:  method,
 				url:     url,
@@ -68,7 +69,7 @@ func TestJSONDecoderDecode(t *testing.T) {
 			v: &Person{},
 			wantErr: errors.E(
 				errors.WithOp("JSONDecoder.Decode"),
-				ErrKindUnsupportedMediaType,
+				httputil.ErrKindUnsupportedMediaType,
 				errors.WithText("Content-Type header '' is not application/json"),
 			),
 		},
@@ -83,7 +84,7 @@ func TestJSONDecoderDecode(t *testing.T) {
 			v: &Person{},
 			wantErr: errors.E(
 				errors.WithOp("JSONDecoder.Decode"),
-				ErrKindUnsupportedMediaType,
+				httputil.ErrKindUnsupportedMediaType,
 				errors.WithText("Content-Type header 'text/html; charset=utf-8' is not application/json"),
 			),
 		},
@@ -134,7 +135,7 @@ func TestJSONDecoderDecode(t *testing.T) {
 		},
 		{
 			name: "UnknownField",
-			j:    JSONDecoder{DisallowUnknownFields: true},
+			j:    httputil.JSONDecoder{DisallowUnknownFields: true},
 			r: request{
 				method:  method,
 				url:     url,
@@ -212,8 +213,8 @@ func TestJSONDecoderDecode(t *testing.T) {
 		}
 
 		r.Body = http.MaxBytesReader(httptest.NewRecorder(), r.Body, 1)
-		err = JSONDecoder{}.Decode(r, &Person{})
-		want := errors.E(errors.WithOp("JSONDecoder.Decode"), ErrKindRequestEntityTooLarge)
+		err = httputil.JSONDecoder{}.Decode(r, &Person{})
+		want := errors.E(errors.WithOp("JSONDecoder.Decode"), httputil.ErrKindRequestEntityTooLarge)
 		if !errors.Match(want, err) {
 			t.Errorf("JSONDecoder.Decode() error diff: %s", errorDiff(want, err))
 		}
@@ -254,5 +255,5 @@ type Person struct {
 }
 
 func errorDiff(err1, err2 error) string {
-	return "\n -" + strings.Join(errors.Diff(err1, err2), "\n- ")
+	return "\n- " + strings.Join(errors.Diff(err1, err2), "\n- ")
 }

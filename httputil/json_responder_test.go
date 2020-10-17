@@ -1,4 +1,4 @@
-package httputil
+package httputil_test
 
 import (
 	"bytes"
@@ -11,12 +11,13 @@ import (
 	"testing"
 
 	"github.com/sudo-suhas/xgo/errors"
+	"github.com/sudo-suhas/xgo/httputil"
 )
 
 func TestJSONResponderRespond(t *testing.T) {
 	cases := []struct {
 		name string
-		jr   JSONResponder
+		jr   httputil.JSONResponder
 		v    interface{}
 		want response
 	}{
@@ -55,11 +56,11 @@ func TestJSONResponderRespond(t *testing.T) {
 	t.Run("ObserveEncodeError", func(t *testing.T) {
 		var callCnt int
 		v := marshalFailer{err: errors.E(errors.WithOp("marshal"), errors.WithText("fail"))}
-		jr := JSONResponder{
-			ErrObservers: []ErrorObserverFunc{
+		jr := httputil.JSONResponder{
+			ErrObservers: []httputil.ErrorObserverFunc{
 				func(r *http.Request, err error) {
 					callCnt++
-					errStr := "json: error calling MarshalJSON for type httputil.marshalFailer: marshal: fail"
+					errStr := "json: error calling MarshalJSON for type httputil_test.marshalFailer: marshal: fail"
 					if err == nil || err.Error() != errStr {
 						t.Errorf(`ErrorObserver.err="%v"; want=%q`, err, errStr)
 					}
@@ -80,7 +81,7 @@ func TestJSONResponderRespond(t *testing.T) {
 }
 
 func TestJSONResponderRespondWithStatus(t *testing.T) {
-	var jr JSONResponder
+	var jr httputil.JSONResponder
 	rec := httptest.NewRecorder()
 	jr.RespondWithStatus(nil, rec, http.StatusCreated, Person{Name: "Donald", Age: 33})
 	matchResponse(t, rec.Result(), response{
@@ -93,7 +94,7 @@ func TestJSONResponderRespondWithStatus(t *testing.T) {
 func TestJSONResponderError(t *testing.T) {
 	cases := []struct {
 		name string
-		jr   JSONResponder
+		jr   httputil.JSONResponder
 		err  error
 		want response
 	}{
@@ -130,7 +131,7 @@ func TestJSONResponderError(t *testing.T) {
 		},
 		{
 			name: "WithErrToRespBody",
-			jr:   JSONResponder{ErrToRespBody: func(err error) interface{} { return json.RawMessage(`{"no":"ok"}`) }},
+			jr:   httputil.JSONResponder{ErrToRespBody: func(err error) interface{} { return json.RawMessage(`{"no":"ok"}`) }},
 			err:  errors.E(errors.PermissionDenied, errors.WithUserMsg("Nice try")),
 			want: response{
 				status:  http.StatusForbidden,
@@ -152,8 +153,8 @@ func TestJSONResponderError(t *testing.T) {
 		respondErr := errors.E(
 			errors.WithOp("marshal"), errors.InvalidInput, errors.WithText("fail"),
 		)
-		jr := JSONResponder{
-			ErrObservers: []ErrorObserverFunc{
+		jr := httputil.JSONResponder{
+			ErrObservers: []httputil.ErrorObserverFunc{
 				func(r *http.Request, err error) {
 					callCnt++
 					if !errors.Match(respondErr, err) {
@@ -178,7 +179,7 @@ func TestJSONResponderError(t *testing.T) {
 }
 
 func TestJSONResponderErrorWithStatus(t *testing.T) {
-	var jr JSONResponder
+	var jr httputil.JSONResponder
 	rec := httptest.NewRecorder()
 	err := errors.E(errors.InvalidInput, errors.WithUserMsg("Don't try again"))
 	jr.ErrorWithStatus(nil, rec, http.StatusConflict, err)

@@ -11,13 +11,13 @@ import (
 // - https://middlemost.com/failure-is-your-domain/
 // - https://about.sourcegraph.com/go/gophercon-2019-handling-go-errors
 
-// Error is the type that implements the error interface.
-// An Error value may leave some values unset.
+// Error is the type that implements the error interface. An Error value
+// may leave some values unset.
 //
-// If the error is printed, only those items that have been
-// set to non-zero values will appear in the result.
+// If the error is printed, only those items that have been set to
+// non-zero values will appear in the result.
 //
-// If Kind is not specified or Other, we set it to the Kind of
+// If Kind is not specified or Unknown, we try to set it to the Kind of
 // the underlying error.
 type Error struct {
 	// Op is the operation being performed, usually the name of the method
