@@ -14,6 +14,19 @@
 // JSONDecoder implements this interface and can be used to parse the
 // request body if the content type is JSON.
 //
+// 	var (
+// 		jsonDec   httputil.JSONDecoder
+// 		responder httputil.JSONResponder
+// 	)
+//
+// 	// ...
+//
+// 	var u myapp.User
+// 	if err := jsonDec.Decode(r, &u); err != nil {
+// 		responder.Error(r, w, err)
+// 		return
+// 	}
+//
 // Validation of input can be plugged into the decoding step using
 // ValidatingDecoderMiddleware with an implementation of xgo.Validator:
 //
@@ -100,5 +113,42 @@
 //
 // 		httplog.LogEntrySetField(r, "error_details", e.Details())
 // 	}
+//
+// Building URLs
+//
+// URLBuilder makes building URLs convenient and prevents common
+// mistakes. Specifically, it handles escaping the path parameters, encoding the
+// query parameters and building the complete URL with an easy to use API.
+//
+// 	b, err := httputil.NewURLBuilderSource("https://api.example.com/")
+// 	if err != nil {
+// 		// ...
+// 	}
+//
+// 	var u *url.URL
+// 	u = b.NewURLBuilder().
+// 		Path("/users/{id}/posts").
+// 		PathParamInt("id", 123).
+// 		QueryParamInt("limit", 10).
+// 		QueryParamInt("offset", 120).
+// 		URL()
+// 	fmt.Println(u) // https://api.example.com/users/123/posts?limit=10&offset=120
+//
+// 	u = b.NewURLBuilder().
+// 		Path("/posts/{title}").
+// 		PathParam("title", `Letters / "Special" Characters`).
+// 		URL()
+// 	fmt.Println(u) // https://api.example.com/posts/Letters%2520%252F%2520%2522Special%2522%2520Characters
+//
+// 	u = b.NewURLBuilder().
+// 		Path("/users/{userID}/posts/{postID}/comments").
+// 		PathParam("userID", "foo").
+// 		PathParam("postID", "bar").
+// 		QueryParams(url.Values{
+// 			"search": {"some text"},
+// 			"limit":  {"10"},
+// 		}).
+// 		URL()
+// 	fmt.Println(u) // https://api.example.com/users/foo/posts/bar/comments?limit=10&search=some+text
 //
 package httputil

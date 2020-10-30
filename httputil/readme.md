@@ -9,7 +9,7 @@ in JSON.
   - [Decoding requests](#decoding-requests)
     - [`JSONDecoder`](#jsondecoder)
     - [Validation](#validation)
-    - [Decoding query parameters](#decodingqueryparameters)
+    - [Decoding query parameters](#decoding-query-parameters)
   - [Encoding responses](#encoding-responses)
     - [Encoding errors](#encoding-errors)
     - [Observing errors](#observing-errors)
@@ -389,8 +389,6 @@ u = b.NewURLBuilder().
 	URL()
 fmt.Println(u) // https://api.example.com/users/foo/posts/bar/comments?limit=10&search=some+text
 ```
-
-#
 
 [pkg-go-dev-xgo-badge]: https://pkg.go.dev/badge/github.com/sudo-suhas/xgo
 [pkg-go-dev-xgo-httputil]: https://pkg.go.dev/github.com/sudo-suhas/xgo/httputil
