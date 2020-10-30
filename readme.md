@@ -14,14 +14,14 @@ $ go get github.com/sudo-suhas/xgo
 Usage for each package is documentated in the respective readme.
 
 - [`errors`](errors#table-of-contents) ([API reference][errors-api-docs])
-- [`httputil`](httputil) ([API reference][httputil-api-docs])
+- [`httputil`](httputil#table-of-contents) ([API reference][httputil-api-docs])
 
 ## Decision Log
 
 The rationale for important design decisions is documented in
 [decision-log.md](decision-log.md).
 
-## Credit
+## Credits
 
 A lot of the ideas for the errors package are from these articles and talks:
 
@@ -30,6 +30,12 @@ A lot of the ideas for the errors package are from these articles and talks:
 - ["Failure is your Domain"][failure-your-domain] by Ben Johnson.
 - ["Handling Go errors"][handling-go-errors] by Marwan Sulaiman from
   GopherCon 2019.
+
+The JSON decoder implementation in the `httputil` package is based on ["How to
+Parse a JSON Request Body in Go"][how-to-parse-json-req] by Alex Edwards.
+
+The URL builder in the `httputil` package drew some inspiration from
+https://github.com/balazsbotond/urlcat.
 
 [github-workflow-badge]:
 	https://github.com/sudo-suhas/xgo/workflows/build/badge.svg
@@ -46,3 +52,5 @@ A lot of the ideas for the errors package are from these articles and talks:
 [failure-your-domain]: https://middlemost.com/failure-is-your-domain/
 [handling-go-errors]:
 	https://about.sourcegraph.com/go/gophercon-2019-handling-go-errors
+[how-to-parse-json-req]:
+	https://www.alexedwards.net/blog/how-to-properly-parse-a-json-request-body

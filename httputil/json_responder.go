@@ -9,8 +9,19 @@ import (
 	"github.com/sudo-suhas/xgo/errors"
 )
 
-// ErrorObserverFunc takes some action on an error during request
-// processing.
+// ErrorObserverFunc takes some action when an error occurs during
+// request processing.
+//
+// 	func errLogger(r *http.Request, err error) {
+// 		var e *errors.Error
+// 		if !errors.As(err, &e) {
+// 			httplog.LogEntrySetField(r, "error", err.Error())
+// 			return
+// 		}
+//
+// 		httplog.LogEntrySetField(r, "error_details", e.Details())
+// 	}
+//
 type ErrorObserverFunc func(r *http.Request, err error)
 
 // JSONResponder responds with the value or error encoded as JSON.

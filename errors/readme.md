@@ -18,6 +18,10 @@ HTTP interop.
 
 ## Usage
 
+```go
+import "github.com/sudo-suhas/xgo/errors"
+```
+
 ### Creating errors
 
 To facilitate error construction, the package provides a function,
