@@ -6,7 +6,6 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/sudo-suhas/xgo"
 	"github.com/sudo-suhas/xgo/errors"
 )
 
@@ -28,7 +27,7 @@ type URLBuilderSource struct {
 // The baseURL is expected to specify the host. If no scheme is
 // specified, it defaults to http scheme.
 func NewURLBuilderSource(baseURL string) (URLBuilderSource, error) {
-	const op xgo.Op = "httputil.NewURLBuilderSource"
+	const op = "httputil.NewURLBuilderSource"
 
 	u, err := url.Parse(baseURL)
 	if err != nil {

@@ -38,7 +38,7 @@ a method, so a constant called `op` could be defined that will be passed to all
 
 ```go
 func (b *binder) Bind(r *http.Request, v interface{}) error {
-	const op xgo.Op = "binder.Bind"
+	const op = "binder.Bind"
 
 	if err := b.Decode(r, v); err != nil {
 		return errors.E(errors.WithOp(op), errors.InvalidInput, errors.WithErr(err))
@@ -152,7 +152,7 @@ Example:
 ```go
 // CreateUser creates a new user in the system.
 func (s *Service) CreateUser(ctx context.Context, user *myapp.User) error {
-	const op xgo.Op = "svc.CreateUseer"
+	const op = "svc.CreateUseer"
 
 	// Validate username is non-blank.
 	if user.Username == "" {

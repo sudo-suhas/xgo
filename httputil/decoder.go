@@ -38,7 +38,7 @@ type DecoderMiddleware func(Decoder) Decoder
 func ValidatingDecoderMiddleware(vd xgo.Validator) DecoderMiddleware {
 	return func(d Decoder) Decoder {
 		return DecodeFunc(func(r *http.Request, v interface{}) error {
-			const op xgo.Op = "ValidatingDecoderMiddleware"
+			const op = "ValidatingDecoderMiddleware"
 
 			if err := d.Decode(r, v); err != nil {
 				return err

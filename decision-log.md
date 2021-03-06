@@ -53,7 +53,7 @@ verbose than the `upspin.io/errors` approach but the trade-off between verbosity
 and clarity is not too bad (I hope).
 
 ```go
-const op xgo.Op = "service.MakeBooking"
+const op = "service.MakeBooking"
 //...
 if err := db.OpenConn(ctx); err != nil {
 	txt := "open connection"
