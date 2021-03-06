@@ -1,6 +1,8 @@
 # Configuration for golangci-lint
 # See https://golangci-lint.run/usage/configuration/#config-file
 
+# Configuration updated for golangci-lint v1.35.2
+
 # See https://golangci-lint.run/usage/linters/
 [linters]
   # Disable-all coupled with enable scales well with updates to golangci-lint
@@ -21,7 +23,7 @@
 
     # https://github.com/dominikh/go-tools/tree/master/unused
     # Checks Go code for unused constants, variables, functions and types.
-    "unused",
+    "unused", # prod only
 
     # https://github.com/dominikh/go-tools/tree/master/unused
     # Suggests simplifications for code.
@@ -55,13 +57,17 @@
     # Finds repeated strings that could be replaced by a constant.
     "goconst",
 
-    # https://golang.org/cmd/gofmt/
-    # Checks whether code was gofmt-ed.
-    "gofmt", # prod only
+    # https://github.com/daixiang0/gci
+    # Gci control golang package import order and make it always deterministic.
+    "gci",
 
-    # https://godoc.org/golang.org/x/tools/cmd/goimports
-    # Checks unused imports and imports grouping.
-    "goimports",
+    # https://github.com/golang/lint
+    # Golint differs from gofmt. Gofmt reformats Go source code, whereas golint prints out style mistakes
+    "golint",
+
+    # https://github.com/mvdan/gofumpt
+    # Gofumpt checks whether code was gofumpt-ed.
+    "gofumpt",
 
     # https://github.com/client9/misspell
     # Finds commonly misspelled English words in comments.
@@ -74,6 +80,14 @@
     # https://github.com/alexkohler/nakedret
     # Finds naked returns in functions greater than a specified function length.
     "nakedret",
+
+    # https://github.com/uudashr/gocognit
+    # Computes and checks the cognitive complexity of functions
+    "gocognit", # prod only
+
+    # https://github.com/golangci/golangci-lint/blob/master/pkg/golinters/nolintlint/README.md
+    # Reports ill-formed or insufficient nolint directives
+    "nolintlint", # prod only
   ]
 
 # Options for analysis running
@@ -118,6 +132,8 @@
       "asmdecl",
       # (dupl staticcheck) check for useless assignments
       "assign",
+	  # detect structs that would take less memory if their fields were sorted
+	  "fieldalignment",
     ]
 
   [linters-settings.errcheck]
@@ -136,8 +152,25 @@
     # Setting locale to US will correct the British spelling of 'colour' to 'color'.
     locale = "UK"
     ignore-words = [
-        "unauthorized"
+      "unauthorized"
     ]
+
+  [linters-settings.gofumpt]
+    # Choose whether or not to use the extra rules that are disabled
+    # by default
+    extra-rules = true
+
+  [linters-settings.gocognit]
+    # minimal code complexity to report, 30 by default (but we recommend 10-20)
+    min-complexity = 20
+
+  [linters-settings.nolintlint]
+    # Disable to ensure that nolint directives don't have a leading space. Default is true.
+    allow-leading-space = false
+    # Enable to require an explanation of nonzero length after each nolint directive. Default is false.
+    require-explanation = false
+    # Enable to require nolint directives to mention the specific linter being suppressed. Default is false.
+    require-specific = true
 
 [issues]
   # List of regexps of issue texts to exclude, empty list by default.
