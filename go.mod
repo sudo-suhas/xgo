@@ -1,3 +1,3 @@
 module github.com/sudo-suhas/xgo
 
-go 1.13
+go 1.18
