@@ -64,21 +64,33 @@ func E(opt Option, opts ...Option) error {
 }
 
 func (e *Error) Error() string {
-	b := new(bytes.Buffer)
-
-	writePaddedStr(b, string(e.Op))
-	if e.Kind != Unknown {
-		writePaddedStr(b, e.Kind.String())
-	}
-	writePaddedStr(b, e.Text)
-	if e.Err != nil {
-		writePaddedStr(b, e.Err.Error())
-	}
+	var b bytes.Buffer
+	e.appendError(&b)
 
 	if b.Len() == 0 {
 		return "no error"
 	}
 	return b.String()
+}
+
+func (e *Error) appendError(b *bytes.Buffer) {
+	writePaddedStr(b, string(e.Op))
+	if e.Kind != Unknown {
+		writePaddedStr(b, e.Kind.String())
+	}
+	writePaddedStr(b, e.Text)
+
+	if e.Err == nil {
+		return
+	}
+
+	err, ok := e.Err.(*Error)
+	if !ok {
+		writePaddedStr(b, e.Err.Error())
+		return
+	}
+
+	err.appendError(b)
 }
 
 // Ops returns the "stack" of operations for the error.
