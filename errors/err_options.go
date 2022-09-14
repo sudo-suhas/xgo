@@ -3,7 +3,7 @@ package errors
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"regexp"
 )
@@ -143,7 +143,7 @@ func WithResp(resp *http.Response) Option {
 		req := resp.Request
 		e.Text = fmt.Sprintf("[%s] %s: %s", req.Method, req.URL.RequestURI(), resp.Status)
 
-		body, err := ioutil.ReadAll(resp.Body)
+		body, err := io.ReadAll(resp.Body)
 		if err != nil {
 			return
 		}

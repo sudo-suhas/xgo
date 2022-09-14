@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"reflect"
@@ -203,7 +203,7 @@ func matchResponse(t *testing.T, got *http.Response, want response) {
 	// (*httptest.ResponseRecorder).Result()
 	// The Response.Body is guaranteed to be non-nil and Body.Read call is
 	// guaranteed to not return any error other than io.EOF.
-	body, _ := ioutil.ReadAll(got.Body)
+	body, _ := io.ReadAll(got.Body)
 	body = bytes.TrimSpace(body)
 	if len(want.body) > 0 {
 		ok, err := jsonBytesEqual(body, want.body)

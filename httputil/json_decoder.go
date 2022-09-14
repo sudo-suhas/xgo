@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"regexp"
 	"strings"
@@ -46,7 +45,7 @@ type JSONDecoder struct {
 func (j JSONDecoder) Decode(r *http.Request, v interface{}) error {
 	const op = "JSONDecoder.Decode"
 
-	defer io.Copy(ioutil.Discard, r.Body) //nolint:errcheck
+	defer io.Copy(io.Discard, r.Body) //nolint:errcheck
 
 	// Based on https://www.alexedwards.net/blog/how-to-properly-parse-a-json-request-body
 
