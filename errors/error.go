@@ -50,9 +50,9 @@ type Error struct {
 
 // E builds an error value with the provided options.
 //
-// 	if err := svc.ProcessSomething(); err != nil {
-// 		return errors.E(errors.WithOp(op), errors.WithErr(err))
-// 	}
+//	if err := svc.ProcessSomething(); err != nil {
+//		return errors.E(errors.WithOp(op), errors.WithErr(err))
+//	}
 func E(opt Option, opts ...Option) error {
 	var e Error
 	for _, opt := range prepend(opt, opts) {

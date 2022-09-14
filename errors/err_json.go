@@ -3,9 +3,9 @@ package errors
 // JSONFunc converts the Error instance to a JSON value. It is
 // recommended to return one of the following:
 //
-// 	- map[string]interface{}
-// 	- []map[string]inteface{}
-// 	- CustomType
+//   - map[string]interface{}
+//   - []map[string]inteface{}
+//   - CustomType
 //
 // In certain cases, such as validation errors, it is reasonable to
 // expand a single error instance into multiple 'Objects'.

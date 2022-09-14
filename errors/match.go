@@ -15,7 +15,9 @@ import (
 // second argument but not present in the first are ignored.
 //
 // For example,
+//
 //	errors.Match(errors.E(errors.WithOp("service.MakeBooking"), errors.PermissionDenied), err)
+//
 // tests whether err is an Error with Kind=PermissionDenied and
 // Op=service.MakeBooking.
 func Match(template, err error) bool {
@@ -32,7 +34,9 @@ func Match(template, err error) bool {
 // in the second argument but not present in the template are ignored.
 //
 // For example,
-// 	errors.Diff(errors.E(errors.WithOp("service.MakeBooking"), errors.PermissionDenied), err)
+//
+//	errors.Diff(errors.E(errors.WithOp("service.MakeBooking"), errors.PermissionDenied), err)
+//
 // tests whether err is an Error with Kind=PermissionDenied and
 // Op=service.MakeBooking.
 func Diff(template, err error) []string { //nolint: gocognit

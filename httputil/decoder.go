@@ -29,12 +29,12 @@ type DecoderMiddleware func(Decoder) Decoder
 // ValidatingDecoderMiddleware returns a DecoderMiddleware which
 // validates the decoded value.
 //
-// 	var vd xgo.Validator = MyValidator{}
-// 	var dec httputil.Decoder
-// 	{
-// 		dec = httputil.JSONDecoder{}
-// 		dec = httputil.ValidatingDecoderMiddleware(vd)(dec)
-// 	}
+//	var vd xgo.Validator = MyValidator{}
+//	var dec httputil.Decoder
+//	{
+//		dec = httputil.JSONDecoder{}
+//		dec = httputil.ValidatingDecoderMiddleware(vd)(dec)
+//	}
 func ValidatingDecoderMiddleware(vd xgo.Validator) DecoderMiddleware {
 	return func(d Decoder) Decoder {
 		return DecodeFunc(func(r *http.Request, v interface{}) error {

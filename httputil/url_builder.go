@@ -59,28 +59,27 @@ func (b URLBuilderSource) NewURLBuilder() *URLBuilder {
 //
 // URLBuilderSource should be used to create an instance of URLBuilder.
 //
-// 	b, err := httputil.NewURLBuilderSource("https://api.example.com/")
-// 	if err != nil {
-// 		// handle error
-// 	}
+//	b, err := httputil.NewURLBuilderSource("https://api.example.com/")
+//	if err != nil {
+//		// handle error
+//	}
 //
-// 	u := b.NewURLBuilder().
-// 		Path("/users/{id}/posts").
-// 		PathParam("id", id).
-// 		QueryParam("limit", limit).
-// 		QueryParam("offset", offset).
-// 		URL()
+//	u := b.NewURLBuilder().
+//		Path("/users/{id}/posts").
+//		PathParam("id", id).
+//		QueryParam("limit", limit).
+//		QueryParam("offset", offset).
+//		URL()
 //
-// 	// { id: 123, limit: 10, offset: 120 }
-// 	// https://api.example.com/users/123/posts?limit=10&offset=120
+//	// { id: 123, limit: 10, offset: 120 }
+//	// https://api.example.com/users/123/posts?limit=10&offset=120
 //
-// 	r, err := http.NewRequestWithContext(context.Background(), http.MethodGet, u.String(), nil)
-// 	if err != nil {
-// 		// handle error
-// 	}
+//	r, err := http.NewRequestWithContext(context.Background(), http.MethodGet, u.String(), nil)
+//	if err != nil {
+//		// handle error
+//	}
 //
-// 	// send HTTP request.
-//
+//	// send HTTP request.
 type URLBuilder struct {
 	url        *url.URL
 	path       string
