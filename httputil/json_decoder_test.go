@@ -254,6 +254,6 @@ type Person struct {
 	V    interface{}
 }
 
-func errorDiff(err1, err2 error) string {
-	return "\n- " + strings.Join(errors.Diff(err1, err2), "\n- ")
+func errorDiff(template, err error) string {
+	return "\n- " + strings.Join(errors.Diff(template, err), "\n- ")
 }
