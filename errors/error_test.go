@@ -205,10 +205,10 @@ func TestErrorOps(t *testing.T) {
 	tests := []struct {
 		name string
 		e    *Error
-		want []xgo.Op
+		want []string
 	}{
 		{"WithoutOp", E(InvalidInput, WithText("divide by zero")).(*Error), nil},
-		{"WithOp", E(WithOp("Get")).(*Error), []xgo.Op{"Get"}},
+		{"WithOp", E(WithOp("Get")).(*Error), []string{"Get"}},
 		{
 			"WithOps",
 			E(
@@ -218,7 +218,7 @@ func TestErrorOps(t *testing.T) {
 					WithErr(&Error{Err: E(WithOp("Op3"))}),
 				)),
 			).(*Error),
-			[]xgo.Op{"Op1", "Op2", "Op3"},
+			[]string{"Op1", "Op2", "Op3"},
 		},
 	}
 	for _, tt := range tests {

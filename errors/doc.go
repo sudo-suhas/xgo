@@ -32,7 +32,7 @@
 // to the constructor. Additional context can include the following
 // (optional):
 //
-//   - errors.WithOp(xgo.Op): Operation name being attempted.
+//   - errors.WithOp(string): Operation name being attempted.
 //   - errors.Kind: Error classification.
 //   - errors.WithText(string): Error string.
 //     errors.WithTextf(string, ...interface{}) can also be

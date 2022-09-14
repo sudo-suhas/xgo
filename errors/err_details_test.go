@@ -4,8 +4,6 @@ import (
 	"database/sql"
 	"reflect"
 	"testing"
-
-	"github.com/sudo-suhas/xgo"
 )
 
 func TestErrorDetails(t *testing.T) {
@@ -26,7 +24,7 @@ func TestErrorDetails(t *testing.T) {
 				WithErr(sql.ErrNoRows),
 			).(*Error),
 			want: InternalDetails{
-				Ops:   []xgo.Op{"Get"},
+				Ops:   []string{"Get"},
 				Kind:  NotFound,
 				Error: "Get: not found: beat dead horse: already dead: sql: no rows in result set",
 				Data:  420,
@@ -49,7 +47,7 @@ func TestErrorDetails(t *testing.T) {
 				)),
 			).(*Error),
 			want: InternalDetails{
-				Ops:   []xgo.Op{"Get", "Select"},
+				Ops:   []string{"Get", "Select"},
 				Kind:  Internal,
 				Error: "Get: internal error: beat dead horse: already dead: Select: not found: select data from table where column = ?: sql: no rows in result set",
 				Data:  []interface{}{420, "xyz"},

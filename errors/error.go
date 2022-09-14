@@ -2,8 +2,6 @@ package errors
 
 import (
 	"bytes"
-
-	"github.com/sudo-suhas/xgo"
 )
 
 // Package types are inspired by the following articles:
@@ -20,9 +18,9 @@ import (
 // If Kind is not specified or Unknown, we try to set it to the Kind of
 // the underlying error.
 type Error struct {
-	// Op is the operation being performed, usually the name of the method
-	// being invoked (Get, Put, etc.).
-	Op xgo.Op
+	// Op describes an operation, usually as the package and method,
+	// such as "key/server.Lookup".
+	Op string
 
 	// Kind is the class of error, such as permission failure,
 	// or "Unknown" if its class is unknown or irrelevant.
@@ -74,7 +72,7 @@ func (e *Error) Error() string {
 }
 
 func (e *Error) appendError(b *bytes.Buffer) {
-	writePaddedStr(b, string(e.Op))
+	writePaddedStr(b, e.Op)
 	if e.Kind != Unknown {
 		writePaddedStr(b, e.Kind.String())
 	}
@@ -94,8 +92,8 @@ func (e *Error) appendError(b *bytes.Buffer) {
 }
 
 // Ops returns the "stack" of operations for the error.
-func (e *Error) Ops() []xgo.Op {
-	var ops []xgo.Op
+func (e *Error) Ops() []string {
+	var ops []string
 	walk(e, func(err *Error) {
 		if err.Op != "" {
 			ops = append(ops, err.Op)

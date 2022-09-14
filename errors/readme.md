@@ -63,7 +63,7 @@ binder.Bind: invalid input: json: cannot unmarshal number into Go struct field .
 A new error wrapping the original error is returned by passing it in to the
 constructor. Additional context can include the following (optional):
 
-- [`errors.WithOp(xgo.Op)`][errors.withop]: Operation name being attempted.
+- [`errors.WithOp(string)`][errors.withop]: Operation name being attempted.
 - [`errors.Kind`][errors.kind]: Error classification.
 - [`errors.WithText(string)`][errors.withtext]: Error string.
   [`errors.WithTextf(string, ...interface{})`][errors.withtextf] can also be
@@ -314,7 +314,7 @@ which is suitable to be parsed.
 
 ```go
 type InternalDetails struct {
-	Ops   []xgo.Op    `json:"ops,omitempty"`
+	Ops   []string    `json:"ops,omitempty"`
 	Kind  Kind        `json:"kind,omitempty"`
 	Error string      `json:"error"`
 	Data  interface{} `json:"data,omitempty"`

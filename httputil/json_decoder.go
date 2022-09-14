@@ -9,7 +9,6 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/sudo-suhas/xgo"
 	"github.com/sudo-suhas/xgo/errors"
 )
 
@@ -45,7 +44,7 @@ type JSONDecoder struct {
 
 // Decode decodes the HTTP request into the given value.
 func (j JSONDecoder) Decode(r *http.Request, v interface{}) error {
-	var op xgo.Op = "JSONDecoder.Decode"
+	const op = "JSONDecoder.Decode"
 
 	defer io.Copy(ioutil.Discard, r.Body) //nolint:errcheck
 

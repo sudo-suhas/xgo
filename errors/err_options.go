@@ -6,8 +6,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"regexp"
-
-	"github.com/sudo-suhas/xgo"
 )
 
 // Option is a type of constructor option for E(...)
@@ -35,7 +33,10 @@ func Options(opts ...Option) Option {
 }
 
 // WithOp sets the Op on the Error instance.
-func WithOp(op xgo.Op) Option {
+//
+// op describes an operation, usually as the package and method,
+// such as "key/server.Lookup".
+func WithOp(op string) Option {
 	return OptionFunc(func(e *Error) {
 		e.Op = op
 	})

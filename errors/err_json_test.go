@@ -3,8 +3,6 @@ package errors
 import (
 	"reflect"
 	"testing"
-
-	"github.com/sudo-suhas/xgo"
 )
 
 func TestErrorJSON(t *testing.T) {
@@ -29,19 +27,19 @@ func TestErrorJSON(t *testing.T) {
 		{
 			name: "WithToJSON",
 			e:    E(WithOp("Get"), NotFound, WithToJSON(toJSON)).(*Error),
-			want: map[string]interface{}{"op": xgo.Op("Get"), "kind": NotFound},
+			want: map[string]interface{}{"op": "Get", "kind": NotFound},
 		},
 		{
 			name: "WithNestedToJSON",
 			e: E(WithOp("Get"), NotFound, WithToJSON(toJSON), WithErr(E(
 				WithToJSON(func(*Error) interface{} { return 420 }),
 			))).(*Error),
-			want: map[string]interface{}{"op": xgo.Op("Get"), "kind": NotFound},
+			want: map[string]interface{}{"op": "Get", "kind": NotFound},
 		},
 		{
 			name: "WithOnlyNestedToJSON",
 			e:    E(WithOp("Get"), NotFound, WithErr(E(WithToJSON(toJSON)))).(*Error),
-			want: map[string]interface{}{"op": xgo.Op("Get"), "kind": NotFound},
+			want: map[string]interface{}{"op": "Get", "kind": NotFound},
 		},
 	}
 	for _, tc := range cases {

@@ -1,13 +1,9 @@
 package errors
 
-import (
-	"github.com/sudo-suhas/xgo"
-)
-
 // InternalDetails is the internal details populated from the error
 // instance.
 type InternalDetails struct {
-	Ops   []xgo.Op    `json:"ops,omitempty"`
+	Ops   []string    `json:"ops,omitempty"`
 	Kind  Kind        `json:"kind,omitempty"`
 	Error string      `json:"error"`
 	Data  interface{} `json:"data,omitempty"`
