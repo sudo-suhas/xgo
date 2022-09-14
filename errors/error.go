@@ -43,7 +43,7 @@ type Error struct {
 	// Err is the underlying error that triggered this one, if any.
 	Err error
 
-	// ToJSON is an used to override the default implementation of
+	// ToJSON is used to override the default implementation of
 	// converting the Error instance into a JSON value. Optional.
 	ToJSON JSONFunc
 }

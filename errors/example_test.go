@@ -69,7 +69,7 @@ func ExampleUserMsg() {
 	// Along with the error Kind, associate the appropriate message for the
 	// specific error scenario.
 	msg := "Username is required"
-	e1 := errors.E(errors.WithOp("svc.CreateUseer"), errors.InvalidInput, errors.WithUserMsg(msg))
+	e1 := errors.E(errors.WithOp("svc.CreateUser"), errors.InvalidInput, errors.WithUserMsg(msg))
 
 	// Use UserMsg to extract the message to be shown to the user.
 	fmt.Println("User message:", errors.UserMsg(e1))
