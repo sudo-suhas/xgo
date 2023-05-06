@@ -55,7 +55,7 @@ func TestOption(t *testing.T) {
 }
 
 func TestWithToJSON(t *testing.T) {
-	e := E(WithToJSON(nilJSON)).(*Error) //nolint:errcheck
+	e := E(WithToJSON(nilJSON)).(*Error)
 	if e.ToJSON == nil {
 		t.Errorf("Error.ToJSON=nil; want %s", funcName(nilJSON))
 		return
@@ -65,6 +65,7 @@ func TestWithToJSON(t *testing.T) {
 	}
 }
 
+//nolint:misspell
 func TestWithResp(t *testing.T) {
 	cases := []struct {
 		name string

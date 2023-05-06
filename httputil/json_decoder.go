@@ -126,7 +126,7 @@ func (j JSONDecoder) Decode(r *http.Request, v interface{}) error {
 	// the destination. If the request body only contained a single JSON
 	// object this will return an io.EOF error. So if we get anything else,
 	// we know that there is additional data in the request body.
-	if err := dec.Decode(&struct{}{}); err != io.EOF {
+	if err := dec.Decode(&struct{}{}); !errors.Is(err, io.EOF) {
 		msg := "Request body must only contain a single JSON object"
 		return errors.E(
 			errors.WithOp(op), errors.InvalidInput, errors.WithUserMsg(msg), errors.WithErr(err),

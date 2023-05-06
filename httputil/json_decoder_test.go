@@ -1,6 +1,7 @@
 package httputil_test
 
 import (
+	"context"
 	"encoding/json"
 	"net/http"
 	"net/http/httptest"
@@ -236,7 +237,7 @@ type request struct {
 }
 
 func (req request) build() (*http.Request, error) {
-	r, err := http.NewRequest(req.method, req.url, strings.NewReader(req.body))
+	r, err := http.NewRequestWithContext(context.Background(), req.method, req.url, strings.NewReader(req.body))
 	if err != nil {
 		return nil, err
 	}
